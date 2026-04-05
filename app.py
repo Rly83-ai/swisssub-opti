@@ -243,7 +243,7 @@ st.markdown("""
     <p>Votre gardien de portefeuille suisse — Analysez, economisez, resiliez</p>
     <div class="badges">
         <span class="badge">🔒 LPD Conforme</span>
-        <span class="badge">🏔 Made in Switzerland</span>
+        <span class="badge">🏔 Conception Suisse</span>
         <span class="badge">⚡ 100% Local</span>
     </div>
 </div>
