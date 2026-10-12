@@ -277,16 +277,18 @@ TEXTES = {
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 .stApp { background: linear-gradient(160deg, #f0ede6 0%, #e8f0e8 40%, #dde8dd 100%); min-height: 100vh; }
-.hero { background: linear-gradient(135deg, rgba(74,103,65,0.92) 0%, rgba(95,130,80,0.88) 100%); border-radius: 24px; padding: 2.8rem 2rem 2.5rem; text-align: center; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 8px 32px rgba(74,103,65,0.25); position: relative; overflow: hidden; }
-.hero::before { content: '🏔'; position: absolute; font-size: 8rem; opacity: 0.06; right: -1rem; top: -1rem; transform: rotate(-15deg); }
-.hero::after { content: '🇨🇭'; position: absolute; font-size: 5rem; opacity: 0.08; left: 1rem; bottom: -1rem; }
-.hero h1 { font-family: 'Lora', serif; color: white; font-size: 2.4rem; font-weight: 700; margin: 0 0 0.4rem 0; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-.hero p { color: rgba(255,255,255,0.88); font-size: 1rem; margin: 0 0 1rem 0; font-weight: 300; }
+.hero { background: #ffffff; border-radius: 24px; padding: 2rem 2rem 1.8rem; text-align: center; margin-bottom: 1.5rem; border: 1.5px solid #D5E8DC; box-shadow: 0 4px 24px rgba(74,103,65,0.1); position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #00B865, #5f8250, #00B865); }
+.hero-logo-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 1rem; }
+.hero-wordmark { text-align: left; }
+.hero-wordmark h1 { font-family: 'Space Grotesk', 'Inter', sans-serif; color: #111C17; font-size: 2rem; font-weight: 700; margin: 0; letter-spacing: -0.03em; line-height: 1; }
+.hero-wordmark h1 em { color: #00B865; font-style: normal; }
+.hero-wordmark p { color: #6B7F74; font-size: 0.8rem; margin: 4px 0 0 0; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; }
 .hero .badges { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.hero .badge { display: inline-block; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35); color: white; font-size: 0.72rem; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.8px; font-weight: 500; }
+.hero .badge { display: inline-block; background: #E6F7EE; border: 1px solid #C8EDD8; color: #009952; font-size: 0.72rem; padding: 4px 12px; border-radius: 20px; letter-spacing: 0.5px; font-weight: 600; }
 .security-bar { background: rgba(255,255,255,0.7); border: 1px solid rgba(74,103,65,0.2); border-left: 4px solid #4a6741; border-radius: 12px; padding: 0.8rem 1.2rem; font-size: 0.85rem; color: #2d4a28; margin-bottom: 1.5rem; font-weight: 500; }
 .metric-card { background: rgba(255,255,255,0.75); border-radius: 16px; padding: 1.4rem 1rem; border: 1px solid rgba(255,255,255,0.6); box-shadow: 0 4px 16px rgba(74,103,65,0.1); text-align: center; height: 100%; }
 .metric-label { font-size: 0.68rem; font-weight: 600; color: #7a8f74; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; }
@@ -483,16 +485,31 @@ if "langue" not in st.session_state:
 
 t = TEXTES[st.session_state["langue"]]
 
-# HERO
+# HERO avec logo SVG intégré
 st.markdown("""
 <div class="hero">
-    <h1>""" + t["titre"] + """</h1>
-    <p>""" + t["sous_titre"] + """</p>
-    <div class="badges">
-        <span class="badge">🔒 """ + t["badge1"] + """</span>
-        <span class="badge">🏔 """ + t["badge2"] + """</span>
-        <span class="badge">⚡ """ + t["badge3"] + """</span>
+  <div class="hero-logo-row">
+    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="52" height="52" rx="13" fill="#E6F7EE"/>
+      <rect x="9" y="7" width="24" height="30" rx="3.5" fill="white" stroke="#00B865" stroke-width="1.6"/>
+      <line x1="14" y1="15" x2="25" y2="15" stroke="#00B865" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="14" y1="20" x2="29" y2="20" stroke="#00B865" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+      <line x1="14" y1="25" x2="22" y2="25" stroke="#00B865" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+      <rect x="9" y="27" width="24" height="2.5" rx="1.25" fill="#00B865" opacity="0.75"/>
+      <circle cx="39" cy="39" r="13" fill="#00B865"/>
+      <path d="M35 35.5 L39 41.5 L43 35.5" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <line x1="39" y1="32" x2="39" y2="41" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+    </svg>
+    <div class="hero-wordmark">
+      <h1>SwissSub<em>Opti</em></h1>
+      <p>Optimiseur de charges fixes &middot; CH</p>
     </div>
+  </div>
+  <div class="badges">
+      <span class="badge">🔒 """ + t["badge1"] + """</span>
+      <span class="badge">🏔 """ + t["badge2"] + """</span>
+      <span class="badge">⚡ """ + t["badge3"] + """</span>
+  </div>
 </div>
 """, unsafe_allow_html=True)
 
